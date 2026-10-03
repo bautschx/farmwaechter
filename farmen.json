@@ -3,13 +3,36 @@
   "tagesbericht_uhrzeit": 8,
   "chains": {
     "OP Mainnet": {
+      "blockzeit": 2,
       "rpc": [
         "https://mainnet.optimism.io",
         "https://optimism-rpc.publicnode.com"
-      ],
-      "nft_manager": "0xf7f8ccce99ca2896ec75d3a399d152db96808399",
-      "gauges": [
-        "0x65759f7f8bc7c1aac4fa57099e6f7a7a1da9b407"
+      ]
+    },
+    "Base": {
+      "blockzeit": 2,
+      "rpc": [
+        "https://mainnet.base.org",
+        "https://base-rpc.publicnode.com"
+      ]
+    },
+    "Arbitrum": {
+      "blockzeit": 0.25,
+      "rpc": [
+        "https://arb1.arbitrum.io/rpc",
+        "https://arbitrum-one-rpc.publicnode.com"
+      ]
+    },
+    "BNB Chain": {
+      "blockzeit": 0.45,
+      "rpc": [
+        "https://bsc-rpc.publicnode.com"
+      ]
+    },
+    "Robinhood": {
+      "blockzeit": 0.1,
+      "rpc": [
+        "https://rpc.mainnet.chain.robinhood.com"
       ]
     }
   }
