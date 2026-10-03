@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
+    inputs:
+      diagnose:
+        description: "Nur Verbindungen pruefen (keine Meldungen)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -15,7 +20,7 @@ concurrency:
 jobs:
   pruefen:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v5
 
@@ -28,6 +33,7 @@ jobs:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           SICKLE_ADDRESS: ${{ secrets.SICKLE_ADDRESS }}
+          DIAGNOSE: ${{ inputs.diagnose }}
         run: python waechter.py
 
       - name: Zustand speichern
