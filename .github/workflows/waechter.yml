@@ -1,0 +1,46 @@
+name: Farmwaechter
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: farmwaechter
+  cancel-in-progress: false
+
+jobs:
+  pruefen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Positionen pruefen
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          SICKLE_ADDRESS: ${{ secrets.SICKLE_ADDRESS }}
+        run: python waechter.py
+
+      - name: Zustand speichern
+        if: always()
+        run: |
+          git config user.name "farmwaechter"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          [ -f zustand.json ] || exit 0
+          git add zustand.json
+          if git diff --cached --quiet; then
+            echo "Keine Aenderung am Zustand"
+          else
+            git commit -m "Zustand aktualisiert"
+            git pull --rebase
+            git push
+          fi
