@@ -108,9 +108,25 @@ class Chain:
     def code_vorhanden(self, adresse):
         return self.anfrage("eth_getCode", [adresse, "latest"]) not in ("0x", "0x0", None)
 
-    def logs(self, topics, von, bis):
-        return self.anfrage("eth_getLogs", [{"topics": topics, "fromBlock": hex(von),
-                                             "toBlock": hex(bis)}])
+    def logs(self, topics, von, bis, adressen=None, nur=None):
+        f = {"topics": topics, "fromBlock": hex(von), "toBlock": hex(bis)}
+        if adressen:
+            f["address"] = adressen
+        return self.anfrage("eth_getLogs", [f], nur=nur)
+
+    def logs_robust(self, topics, von, bis, adressen):
+        """Erst ohne Adressliste (findet auch Boersen, die keiner kennt). Lehnt ein Zugang
+        das ab, bei diesem Zugang gezielt in den bekannten Positions-Vertraegen suchen."""
+        letzter = None
+        for url in self.rpcs:
+            for mit in ([None, adressen] if adressen else [None]):
+                try:
+                    return self.logs(topics, von, bis, mit, nur=url)
+                except Revert:
+                    raise
+                except ChainFehler as e:
+                    letzter = e
+        raise letzter
 
 
 def wort(adresse_oder_zahl):
@@ -305,7 +321,7 @@ def neue_nfts_suchen(chain, cfg, sickle, zst):
         ende = min(start + schritt - 1, aktuell)
         abfragen += 1
         try:
-            logs = chain.logs(topics, start, ende)
+            logs = chain.logs_robust(topics, start, ende, cfg.get("nft_manager"))
         except ChainFehler:
             if schritt > LOG_SCHRITT_MIN:  # Bereich zu gross? halbieren und nochmal
                 schritt = max(LOG_SCHRITT_MIN, schritt // 2)
@@ -406,13 +422,20 @@ def diagnose(konfig, sickle_standard):
         chain = Chain(name, cfg["rpc"])
         print(f"== {name}")
         for url in cfg["rpc"]:
+            topics = [TOPIC_TRANSFER, "0x" + wort(NULL_ADRESSE), "0x" + wort(sickle)]
             try:
                 b = int(chain.anfrage("eth_blockNumber", [], nur=url), 16)
-                chain.anfrage("eth_getLogs", [{"topics": [TOPIC_TRANSFER, "0x" + wort(NULL_ADRESSE),
-                              "0x" + wort(sickle)], "fromBlock": hex(b - 500), "toBlock": hex(b)}], nur=url)
-                print(f"   {url}: Block und Suche OK")
             except ChainFehler as e:
-                print(f"   {url}: FEHLER {str(e)[:200]}")
+                print(f"   {url}: FEHLER keine Verbindung {str(e)[:150]}")
+                continue
+            for art, mit in (("freie Suche", None), ("Suche mit Liste", cfg.get("nft_manager"))):
+                if art == "Suche mit Liste" and not mit:
+                    continue
+                try:
+                    chain.logs(topics, b - 500, b, mit, nur=url)
+                    print(f"   {url}: {art} OK")
+                except ChainFehler as e:
+                    print(f"   {url}: {art} FEHLER {str(e)[:120]}")
         try:
             print(f"   Sickle auf dieser Chain vorhanden: {'ja' if chain.code_vorhanden(sickle) else 'nein'}")
         except ChainFehler:
