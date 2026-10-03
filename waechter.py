@@ -309,6 +309,11 @@ def laden(datei, standard):
 def neue_nfts_suchen(chain, cfg, sickle, zst):
     """Sucht neu hergestellte NFTs fuer den Sickle seit dem letzten Lauf."""
     aktuell = chain.block()
+    if not chain.code_vorhanden(sickle):
+        # Ohne Sickle auf dieser Chain kann es dort keine Position geben.
+        # Nur den Stand merken, damit ab hier gesucht wird, sobald er existiert.
+        zst["letzter_block"] = aktuell
+        return
     if "letzter_block" in zst:
         start = zst["letzter_block"] + 1
     else:
