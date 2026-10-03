@@ -1,32 +1,53 @@
 {
  "chains": {
+  "Arbitrum": {
+   "fehler": 0,
+   "letzter_block": 511075405,
+   "log_schritt": 5000,
+   "nfts": {}
+  },
+  "BNB Chain": {
+   "fehler": 1,
+   "letzter_block": 125244296,
+   "nfts": {}
+  },
+  "Base": {
+   "fehler": 0,
+   "letzter_block": 52111525,
+   "log_schritt": 1250,
+   "nfts": {}
+  },
   "OP Mainnet": {
-   "gauges": [
-    "0x65759f7f8bc7c1aac4fa57099e6f7a7a1da9b407"
-   ],
-   "pools": {
-    "0x65759f7f8bc7c1aac4fa57099e6f7a7a1da9b407": "0x069c637cc3dc68aab4cd785df4da7137c717cf3f"
-   },
-   "positionen": {
-    "0x65759f7f8bc7c1aac4fa57099e6f7a7a1da9b407": {
-     "ab010c95fafc128f": {
-      "paar": "USDC/OP",
-      "status": "im"
-     }
-    }
-   },
-   "tokens": {
-    "0x0b2c639c533813f4aa9d7837caf62653d097ff85": {
-     "decimals": 6,
-     "symbol": "USDC"
-    },
-    "0x4200000000000000000000000000000000000042": {
-     "decimals": 18,
-     "symbol": "OP"
+   "fehler": 0,
+   "letzter_block": 157706808,
+   "log_schritt": 5000,
+   "nfts": {
+    "3b39dc4cb8488a6f": {
+     "c": "36349e0d64e9b38a8bcf1d5dc10b09654b05b70035be23a8d2780f86db0f2341",
+     "m": "0xf7f8ccce99ca2896ec75d3a399d152db96808399",
+     "paar": "USDC/OP",
+     "pool": "0x069c637cc3dc68aab4cd785df4da7137c717cf3f",
+     "status": "im"
     }
    }
+  },
+  "Robinhood": {
+   "fehler": 0,
+   "letzter_block": 78207933,
+   "log_schritt": 5000,
+   "nfts": {}
   }
  },
- "fehler": 0,
- "letzter_tagesbericht": "2026-10-03"
+ "letzter_tagesbericht": "2026-10-03",
+ "tokens": {
+  "OP Mainnet:0x0b2c639c533813f4aa9d7837caf62653d097ff85": {
+   "decimals": 6,
+   "symbol": "USDC"
+  },
+  "OP Mainnet:0x4200000000000000000000000000000000000042": {
+   "decimals": 18,
+   "symbol": "OP"
+  }
+ },
+ "version": 2
 }
