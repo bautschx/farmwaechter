@@ -1,0 +1,16 @@
+{
+  "vorwarnung_prozent": 15,
+  "tagesbericht_uhrzeit": 8,
+  "chains": {
+    "OP Mainnet": {
+      "rpc": [
+        "https://mainnet.optimism.io",
+        "https://optimism-rpc.publicnode.com"
+      ],
+      "nft_manager": "0xf7f8ccce99ca2896ec75d3a399d152db96808399",
+      "gauges": [
+        "0x65759f7f8bc7c1aac4fa57099e6f7a7a1da9b407"
+      ]
+    }
+  }
+}
