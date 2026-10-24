@@ -2,36 +2,58 @@
  "chains": {
   "Arbitrum": {
    "fehler": 0,
-   "letzter_block": 517787450,
+   "letzter_block": 517788005,
    "log_schritt": 5000,
    "nfts": {}
   },
+  "Avalanche": {
+   "fehler": 0,
+   "letzter_block": 98410894,
+   "log_schritt": 5000,
+   "nfts": {
+    "01a823b7db788762": {
+     "c": "68081f1b46f9b8aae9ce80a1b835a065dfdb5e91a7778511ba77d26679e18836",
+     "m": "0xfd1c727d8a2259493c66899f478ebfea41329545",
+     "paar": "WAVAX/USDC",
+     "pool": "0x7789fa308147eae364e3bcfa35351f2b9e0bd012",
+     "status": "im"
+    }
+   }
+  },
   "BNB Chain": {
    "fehler": 0,
-   "letzter_block": 129482830,
+   "letzter_block": 129483194,
    "nfts": {}
   },
   "Base": {
    "fehler": 0,
-   "letzter_block": 53020792,
+   "letzter_block": 53020874,
    "log_schritt": 1250,
    "nfts": {}
   },
   "OP Mainnet": {
    "fehler": 0,
-   "letzter_block": 158616076,
+   "letzter_block": 158616158,
    "log_schritt": 5000,
    "nfts": {}
   },
   "Robinhood": {
    "fehler": 0,
-   "letzter_block": 96631899,
+   "letzter_block": 96633462,
    "log_schritt": 5000,
    "nfts": {}
   }
  },
  "letzter_tagesbericht": "2026-10-24",
  "tokens": {
+  "Avalanche:0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7": {
+   "decimals": 18,
+   "symbol": "WAVAX"
+  },
+  "Avalanche:0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e": {
+   "decimals": 6,
+   "symbol": "USDC"
+  },
   "OP Mainnet:0x0b2c639c533813f4aa9d7837caf62653d097ff85": {
    "decimals": 6,
    "symbol": "USDC"
