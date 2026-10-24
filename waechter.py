@@ -37,7 +37,11 @@ SEL_FACTORY = "0xc45a0155"          # factory()
 SEL_GET_POOL_FEE = "0x1698ee82"     # getPool(address,address,uint24)   Uniswap-Art
 SEL_GET_POOL_SPACING = "0x28af8d0b" # getPool(address,address,int24)    Slipstream-Art
 SEL_SLOT0 = "0x3850c7bd"            # slot0()
+SEL_GLOBAL_STATE = "0xe76c01e4"     # globalState()                     Algebra-Art
+SEL_POOL_BY_PAIR = "0xd9a641e1"     # poolByPair(address,address)       Algebra-Art
+SEL_CUSTOM_POOL = "0x23da36cc"      # customPoolByPair(address,address,address)
 SEL_TOKEN0 = "0x0dfe1681"           # token0()
+SEL_TOKEN1 = "0xd21220a7"           # token1()
 SEL_DECIMALS = "0x313ce567"         # decimals()
 SEL_SYMBOL = "0x95d89b41"           # symbol()
 TOPIC_TRANSFER = "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
@@ -185,7 +189,18 @@ def position_lesen(chain, manager, token_id):
     if len(w) < 12:
         raise Revert("technik")
     feld4 = als_int(w[4])
-    if feld4 >= 2 ** 24:  # dort steht eine Adresse: Algebra-Art, noch nicht unterstuetzt
+    if 2 ** 24 <= feld4 < 2 ** 160:
+        # Algebra-Integral-Art (z. B. Blackhole): an Stelle 4 steht die Deployer-Adresse
+        return {
+            "art": "algebra",
+            "token0": als_adresse(w[2]),
+            "token1": als_adresse(w[3]),
+            "deployer": als_adresse(w[4]),
+            "unten": als_int(w[5], True),
+            "oben": als_int(w[6], True),
+            "liquiditaet": als_int(w[7]),
+        }
+    if feld4 >= 2 ** 24:  # unbekannte Bauart
         raise Revert("technik")
     return {
         "token0": als_adresse(w[2]),
@@ -197,26 +212,70 @@ def position_lesen(chain, manager, token_id):
     }
 
 
-def pool_finden(chain, manager, pos):
-    fabrik = als_adresse(woerter(chain.call(manager, SEL_FACTORY))[0])
-    argumente = wort(pos["token0"]) + wort(pos["token1"]) + wort(pos["feld4"])
-    for sel in (SEL_GET_POOL_FEE, SEL_GET_POOL_SPACING):
+def pool_passt(chain, pool, pos):
+    """Gegenprobe: gehoert der Pool wirklich zu diesem Paar, und liefert er einen Kurs?"""
+    if pool == NULL_ADRESSE:
+        return False
+    try:
+        if als_adresse(woerter(chain.call(pool, SEL_TOKEN0))[0]) != pos["token0"]:
+            return False
+        if als_adresse(woerter(chain.call(pool, SEL_TOKEN1))[0]) != pos["token1"]:
+            return False
+        pool_tick(chain, pool)
+        return True
+    except Revert:
+        return False
+
+
+def pool_finden(chain, manager, pos, kandidaten=()):
+    versuche = []
+    try:
+        fabrik = als_adresse(woerter(chain.call(manager, SEL_FACTORY))[0])
+    except Revert:
+        fabrik = None
+    if fabrik and pos.get("art") == "algebra":
+        if pos["deployer"] != NULL_ADRESSE:
+            versuche.append((fabrik, SEL_CUSTOM_POOL + wort(pos["deployer"])
+                             + wort(pos["token0"]) + wort(pos["token1"])))
+        versuche.append((fabrik, SEL_POOL_BY_PAIR + wort(pos["token0"]) + wort(pos["token1"])))
+    elif fabrik:
+        argumente = wort(pos["token0"]) + wort(pos["token1"]) + wort(pos["feld4"])
+        versuche += [(fabrik, SEL_GET_POOL_FEE + argumente),
+                     (fabrik, SEL_GET_POOL_SPACING + argumente)]
+    for ziel, daten in versuche:
         try:
-            pool = als_adresse(woerter(chain.call(fabrik, sel + argumente))[0])
+            pool = als_adresse(woerter(chain.call(ziel, daten))[0])
         except Revert:
             continue
-        if pool == NULL_ADRESSE:
-            continue
-        try:  # Gegenprobe: gehoert der Pool wirklich zu diesem Paar?
-            if als_adresse(woerter(chain.call(pool, SEL_TOKEN0))[0]) == pos["token0"]:
-                return pool
-        except Revert:
-            continue
+        if pool_passt(chain, pool, pos):
+            return pool
+    # Reserve: im Beleg der Herstellung steht auch der Pool (er meldet die Einzahlung)
+    for adresse in kandidaten:
+        if pool_passt(chain, adresse, pos):
+            return adresse
     raise Revert("technik")
 
 
 def pool_tick(chain, pool):
-    return als_int(woerter(chain.call(pool, SEL_SLOT0))[1], True)
+    try:
+        return als_int(woerter(chain.call(pool, SEL_SLOT0))[1], True)
+    except Revert:  # Algebra-Art: Kurs steht in globalState(), Tick an derselben Stelle
+        return als_int(woerter(chain.call(pool, SEL_GLOBAL_STATE))[1], True)
+
+
+def beleg_adressen(chain, tx, ausser):
+    """Alle Vertraege, die in der Herstellungs-Transaktion etwas gemeldet haben.
+    Wird nur im Speicher gehalten, nie in die oeffentliche Zustandsdatei geschrieben."""
+    try:
+        beleg = chain.anfrage("eth_getTransactionReceipt", [tx])
+    except ChainFehler:
+        return []
+    gesehen = []
+    for log in (beleg or {}).get("logs", []):
+        a = log.get("address", "").lower()
+        if a and a not in ausser and a not in gesehen:
+            gesehen.append(a)
+    return gesehen
 
 
 def token_info(chain, token):
@@ -307,13 +366,14 @@ def laden(datei, standard):
 
 
 def neue_nfts_suchen(chain, cfg, sickle, zst):
-    """Sucht neu hergestellte NFTs fuer den Sickle seit dem letzten Lauf."""
+    """Sucht neu hergestellte NFTs fuer den Sickle seit dem letzten Lauf.
+    Gibt {schluessel: transaktion} der Neufunde zurueck (nur fuer diesen Lauf)."""
     aktuell = chain.block()
     if not chain.code_vorhanden(sickle):
         # Ohne Sickle auf dieser Chain kann es dort keine Position geben.
         # Nur den Stand merken, damit ab hier gesucht wird, sobald er existiert.
         zst["letzter_block"] = aktuell
-        return
+        return {}
     if "letzter_block" in zst:
         start = zst["letzter_block"] + 1
     else:
@@ -334,19 +394,24 @@ def neue_nfts_suchen(chain, cfg, sickle, zst):
             raise
         for log in logs:
             if len(log.get("topics", [])) == 4:  # NFT (bei Muenzen sind es 3)
-                funde.append((log["address"].lower(), als_int(log["topics"][3])))
+                funde.append((log["address"].lower(), als_int(log["topics"][3]),
+                              log.get("transactionHash")))
         zst["letzter_block"] = ende
         start = ende + 1
     zst["log_schritt"] = schritt
-    for manager, tid in funde:
+    belege = {}
+    for manager, tid, tx in funde:
         k = schluessel(sickle, manager, tid)
         if k not in zst["nfts"]:
             zst["nfts"][k] = {"m": manager, "c": verschluesseln(sickle, manager, tid)}
+            if tx:
+                belege[k] = tx
+    return belege
 
 
 def chain_pruefen(name, cfg, sickle, zst, tokens, nah_schwelle, meldungen, uebersicht):
     chain = Chain(name, cfg["rpc"])
-    neue_nfts_suchen(chain, cfg, sickle, zst)
+    belege = neue_nfts_suchen(chain, cfg, sickle, zst)
 
     neu, beendet = [], []   # je Eintrag: (paar, text)
     for k, e in list(zst["nfts"].items()):
@@ -372,7 +437,11 @@ def chain_pruefen(name, cfg, sickle, zst, tokens, nah_schwelle, meldungen, ueber
 
         if "pool" not in e:
             try:
-                e["pool"] = pool_finden(chain, manager, pos)
+                kand = []
+                if k in belege:
+                    kand = beleg_adressen(chain, belege[k],
+                                          {manager, sickle, pos["token0"], pos["token1"]})
+                e["pool"] = pool_finden(chain, manager, pos, kand)
             except Revert:
                 meldungen.append(f"❓ Position auf {name} gefunden (NFT {tid}), aber ich finde "
                                  f"den Pool dazu nicht. Sie wird NICHT überwacht. "
@@ -420,12 +489,28 @@ def chain_pruefen(name, cfg, sickle, zst, tokens, nah_schwelle, meldungen, ueber
                          f"Ich überwache sie nicht mehr.")
 
 
+def sickle_fuer(cfg, sickle_standard):
+    """Sickle-Adresse dieser Chain. Ist bei der Chain ein eigenes Geheimnis eingetragen
+    (sickle_geheimnis), kommt sie von dort, sonst gilt das allgemeine SICKLE_ADDRESS."""
+    name = cfg.get("sickle_geheimnis")
+    if name:
+        wert = os.environ.get(name, "").strip().lower()
+        if not wert:
+            raise ChainFehler(f"Geheimnis {name} fehlt bei GitHub")
+        return wert
+    return cfg.get("sickle", sickle_standard).lower()
+
+
 def diagnose(konfig, sickle_standard):
     """Prueft jede Chain-Verbindung einzeln. Gibt keine persoenlichen Daten aus."""
     for name, cfg in konfig["chains"].items():
-        sickle = cfg.get("sickle", sickle_standard).lower()
-        chain = Chain(name, cfg["rpc"])
         print(f"== {name}")
+        try:
+            sickle = sickle_fuer(cfg, sickle_standard)
+        except ChainFehler as e:
+            print(f"   {e}")
+            continue
+        chain = Chain(name, cfg["rpc"])
         for url in cfg["rpc"]:
             topics = [TOPIC_TRANSFER, "0x" + wort(NULL_ADRESSE), "0x" + wort(sickle)]
             try:
@@ -473,7 +558,17 @@ def main():
         zst = zustand["chains"].setdefault(name, {})
         zst.setdefault("nfts", {})
         zst.setdefault("fehler", 0)
-        sickle = cfg.get("sickle", sickle_standard).lower()
+        try:
+            sickle = sickle_fuer(cfg, sickle_standard)
+        except ChainFehler as e:
+            fehlerhaft.append(name)
+            print(f"FEHLER {name}: {e}")
+            if not zst.get("geheimnis_gemeldet"):
+                meldungen.append(f"⚠️ {name}: {e}. Diese Chain wird erst überwacht, "
+                                 f"wenn es eingetragen ist.")
+                zst["geheimnis_gemeldet"] = True
+            continue
+        zst.pop("geheimnis_gemeldet", None)
         try:
             chain_pruefen(name, cfg, sickle, zst, zustand["tokens"], nah_schwelle,
                           meldungen, uebersicht)

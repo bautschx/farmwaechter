@@ -88,6 +88,18 @@
         "0xa79f5775b0b49e51202c48ddf03f380faa96f641",
         "0x07f44c47743a2f36414a82b9f558ecfcf0eedcef"
       ]
+    },
+    "Avalanche": {
+      "blockzeit": 1,
+      "sickle_geheimnis": "SICKLE_AVALANCHE",
+      "rpc": [
+        "https://avalanche-c-chain-rpc.publicnode.com",
+        "https://api.avax.network/ext/bc/C/rpc",
+        "https://avalanche.drpc.org"
+      ],
+      "nft_manager": [
+        "0xfd1c727d8a2259493c66899f478ebfea41329545"
+      ]
     }
   }
 }
