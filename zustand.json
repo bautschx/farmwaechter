@@ -2,13 +2,13 @@
  "chains": {
   "Arbitrum": {
    "fehler": 0,
-   "letzter_block": 517876118,
+   "letzter_block": 517877217,
    "log_schritt": 5000,
    "nfts": {}
   },
   "Avalanche": {
    "fehler": 0,
-   "letzter_block": 98436673,
+   "letzter_block": 98437011,
    "log_schritt": 5000,
    "nfts": {
     "01a823b7db788762": {
@@ -16,30 +16,30 @@
      "m": "0xfd1c727d8a2259493c66899f478ebfea41329545",
      "paar": "WAVAX/USDC",
      "pool": "0x7789fa308147eae364e3bcfa35351f2b9e0bd012",
-     "status": "im"
+     "status": "nah"
     }
    }
   },
   "BNB Chain": {
    "fehler": 0,
-   "letzter_block": 129536842,
+   "letzter_block": 129537472,
    "nfts": {}
   },
   "Base": {
    "fehler": 0,
-   "letzter_block": 53032950,
+   "letzter_block": 53033091,
    "log_schritt": 1250,
    "nfts": {}
   },
   "OP Mainnet": {
    "fehler": 0,
-   "letzter_block": 158628234,
+   "letzter_block": 158628376,
    "log_schritt": 5000,
    "nfts": {}
   },
   "Robinhood": {
    "fehler": 0,
-   "letzter_block": 96862195,
+   "letzter_block": 96864837,
    "log_schritt": 5000,
    "nfts": {}
   }
