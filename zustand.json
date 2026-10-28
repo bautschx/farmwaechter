@@ -2,13 +2,13 @@
  "chains": {
   "Arbitrum": {
    "fehler": 0,
-   "letzter_block": 518925293,
+   "letzter_block": 518926258,
    "log_schritt": 5000,
    "nfts": {}
   },
   "Avalanche": {
    "fehler": 0,
-   "letzter_block": 98741292,
+   "letzter_block": 98741599,
    "log_schritt": 5000,
    "nfts": {
     "a44e9203e25ec8a6": {
@@ -22,24 +22,24 @@
   },
   "BNB Chain": {
    "fehler": 0,
-   "letzter_block": 130203610,
+   "letzter_block": 130204277,
    "nfts": {}
   },
   "Base": {
    "fehler": 0,
-   "letzter_block": 53183095,
+   "letzter_block": 53183245,
    "log_schritt": 1250,
    "nfts": {}
   },
   "OP Mainnet": {
    "fehler": 0,
-   "letzter_block": 158778380,
+   "letzter_block": 158778530,
    "log_schritt": 5000,
    "nfts": {}
   },
   "Robinhood": {
    "fehler": 0,
-   "letzter_block": 99738400,
+   "letzter_block": 99741302,
    "log_schritt": 5000,
    "nfts": {}
   }
