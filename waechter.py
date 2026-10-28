@@ -6,7 +6,8 @@ Nur lesend. Keine Schluessel, keine Transaktionen. Nur Python-Standardbibliothek
 
 Ablauf je Lauf und Chain:
   1. Neue Positionen finden: jedes NFT, das neu fuer den Sickle hergestellt wird
-     (Transfer von 0x0 an den Sickle, egal von welchem Vertrag).
+     (Transfer von 0x0 an den Sickle, von einem der in farmen.json eingetragenen
+     NFT-Vertraege; neue Boersenvertraege muessen dort ergaenzt werden).
   2. Je Position: ownerOf (gibt es sie noch?), positions (Grenzen, Menge),
      Pool ueber die Fabrik der Boerse, slot0 (aktueller Kurs).
   3. Mit dem letzten Lauf vergleichen und nur bei Aenderung melden.
