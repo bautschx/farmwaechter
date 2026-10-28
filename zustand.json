@@ -2,36 +2,37 @@
  "chains": {
   "Arbitrum": {
    "fehler": 0,
-   "letzter_block": 519143830,
+   "letzter_block": 519144935,
    "log_schritt": 5000,
    "nfts": {}
   },
   "Avalanche": {
    "fehler": 0,
-   "letzter_block": 98803506,
+   "letzter_block": 98803808,
    "log_schritt": 5000,
    "nfts": {}
   },
   "BNB Chain": {
    "fehler": 0,
-   "letzter_block": 130340449,
+   "letzter_block": 130341083,
    "nfts": {}
   },
   "Base": {
-   "fehler": 5,
+   "fehler": 6,
    "letzter_block": 53125497,
+   "letzter_fehler": "Base: keine Antwort (https://base-rpc.publicnode.com: HTTP Error 403: Forbidden)",
    "log_schritt": 1250,
    "nfts": {}
   },
   "OP Mainnet": {
    "fehler": 0,
-   "letzter_block": 158809132,
+   "letzter_block": 158809276,
    "log_schritt": 5000,
    "nfts": {}
   },
   "Robinhood": {
    "fehler": 0,
-   "letzter_block": 100329926,
+   "letzter_block": 100332758,
    "log_schritt": 5000,
    "nfts": {}
   }
