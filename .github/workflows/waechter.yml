@@ -34,6 +34,7 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           SICKLE_ADDRESS: ${{ secrets.SICKLE_ADDRESS }}
           SICKLE_AVALANCHE: ${{ secrets.SICKLE_AVALANCHE }}
+          SICKLE_BASE: ${{ secrets.SICKLE_BASE }}
           DIAGNOSE: ${{ inputs.diagnose }}
         run: python waechter.py
 

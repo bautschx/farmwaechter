@@ -19,6 +19,7 @@
     },
     "Base": {
       "blockzeit": 2,
+      "sickle_geheimnis": "SICKLE_BASE",
       "rpc": [
         "https://mainnet.base.org",
         "https://base-rpc.publicnode.com"
