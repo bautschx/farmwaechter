@@ -577,12 +577,15 @@ def main():
                 meldungen.append(f"✅ {name}: Ich kann die Chain wieder lesen, "
                                  f"die Überwachung läuft.")
             zst["fehler"] = 0
+            zst.pop("letzter_fehler", None)
             if tagesbericht and Chain(name, cfg["rpc"]).code_vorhanden(sickle):
                 sickle_da.append(name)
         except ChainFehler as e:
             zst["fehler"] += 1
             fehlerhaft.append(name)
             print(f"FEHLER {name}: {str(e)[:300]}")
+            # letzter Fehlertext (ohne Adressen) in den Zustand, damit man ihn ohne Log sieht
+            zst["letzter_fehler"] = str(e)[:200].replace(sickle, "<sickle>")
             if zst["fehler"] == FEHLER_MELDEN_AB:
                 hat_pos = any("status" in x for x in zst["nfts"].values())
                 if hat_pos:
