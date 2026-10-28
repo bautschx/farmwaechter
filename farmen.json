@@ -21,8 +21,10 @@
       "blockzeit": 2,
       "sickle_geheimnis": "SICKLE_BASE",
       "rpc": [
+        "https://base.drpc.org",
         "https://mainnet.base.org",
-        "https://base-rpc.publicnode.com"
+        "https://base-rpc.publicnode.com",
+        "https://base.llamarpc.com"
       ],
       "nft_manager": [
         "0xc741beb2156827704a1466575cca1cbf726a1178",
