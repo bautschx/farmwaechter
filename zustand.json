@@ -2,44 +2,44 @@
  "chains": {
   "Arbitrum": {
    "fehler": 0,
-   "letzter_block": 519703044,
+   "letzter_block": 519704058,
    "log_schritt": 5000,
    "nfts": {}
   },
   "Avalanche": {
    "fehler": 0,
-   "letzter_block": 98961679,
+   "letzter_block": 98961941,
    "log_schritt": 5000,
    "nfts": {}
   },
   "BNB Chain": {
    "fehler": 0,
-   "letzter_block": 130680877,
+   "letzter_block": 130681452,
    "nfts": {}
   },
   "Base": {
    "fehler": 0,
-   "letzter_block": 53290527,
+   "letzter_block": 53290656,
    "log_schritt": 78,
    "nfts": {
-    "9f0ff76827d33390": {
-     "c": "36dcd08941ed949b0bfc89d58db4f8e2c7bfeec759932f915f86eb817b72787f",
+    "dfed9e31e234bbaa": {
+     "c": "36dcd08941ed949b0bfc89d58db4f8e2c7bfeec759932f915f86eb817b722b3a",
      "m": "0x4857db576ee0e45f10525ec59527bfd10beec60b",
      "paar": "USDC/SNDKc",
      "pool": "0x2836e062a3fe75943a7f4a552e2365b98e414e75",
-     "status": "nah"
+     "status": "im"
     }
    }
   },
   "OP Mainnet": {
    "fehler": 0,
-   "letzter_block": 158885812,
+   "letzter_block": 158885941,
    "log_schritt": 5000,
    "nfts": {}
   },
   "Robinhood": {
    "fehler": 0,
-   "letzter_block": 101795486,
+   "letzter_block": 101798071,
    "log_schritt": 5000,
    "nfts": {}
   }
