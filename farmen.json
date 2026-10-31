@@ -102,7 +102,15 @@
         "https://avalanche.drpc.org"
       ],
       "nft_manager": [
-        "0xfd1c727d8a2259493c66899f478ebfea41329545"
+        "0xfd1c727d8a2259493c66899f478ebfea41329545",
+        "0x3fed017ec0f5517cdf2e8a9a4156c64d74252146",
+        "0xaaa78e8c4241990b4ce159e105da08129345946a",
+        "0x0b4478e810d48b5882d4019d435a2f864bab4f39",
+        "0xf40937279f38d0c1f97afa5919f1cb3cb7f06a7f",
+        "0x655c406ebfa14ee2006250925e54ec43ad184f8b",
+        "0xb74b1f14d2754acfcbbe1a221023a5cf50ab8acd",
+        "0x9475d90bcaffdad562c2146fc88cbe39d3aad094",
+        "0xc967b23826ddab00d9aad3702cbf5261b7ed9a3a"
       ]
     }
   }
