@@ -2,42 +2,54 @@
  "chains": {
   "Arbitrum": {
    "fehler": 0,
-   "letzter_block": 519919273,
+   "letzter_block": 519920235,
    "log_schritt": 5000,
    "nfts": {}
   },
   "Avalanche": {
    "fehler": 0,
-   "letzter_block": 98871329,
+   "letzter_block": 99021598,
    "log_schritt": 5000,
-   "nfts": {}
+   "nfts": {
+    "916c5daa4391b287": {
+     "c": "c806d98a042e13865558f36793487a9b248cd1532cf57816d6bc640c4dffbc56",
+     "m": "0x3fed017ec0f5517cdf2e8a9a4156c64d74252146",
+     "paar": "BTC.b/USDC",
+     "pool": "0x23ff0b5370bf33725918e6105108f3fa2c4b8a05",
+     "status": "im"
+    }
+   }
   },
   "BNB Chain": {
    "fehler": 0,
-   "letzter_block": 130814019,
+   "letzter_block": 130814653,
    "nfts": {}
   },
   "Base": {
    "fehler": 0,
-   "letzter_block": 53320491,
+   "letzter_block": 53320634,
    "log_schritt": 78,
    "nfts": {}
   },
   "OP Mainnet": {
    "fehler": 0,
-   "letzter_block": 158915776,
+   "letzter_block": 158915918,
    "log_schritt": 5000,
    "nfts": {}
   },
   "Robinhood": {
    "fehler": 0,
-   "letzter_block": 102371111,
+   "letzter_block": 102373787,
    "log_schritt": 5000,
    "nfts": {}
   }
  },
  "letzter_tagesbericht": "2026-10-31",
  "tokens": {
+  "Avalanche:0x152b9d0fdc40c096757f570a51e494bd4b943e50": {
+   "decimals": 8,
+   "symbol": "BTC.b"
+  },
   "Avalanche:0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7": {
    "decimals": 18,
    "symbol": "WAVAX"
