@@ -345,6 +345,15 @@ def welche_grenze(pos, tick, t0, t1):
 
 # ---------------------------------------------------------------- Telegram
 
+DEXSCREENER_NETZ = {"Base": "base", "OP Mainnet": "optimism", "Arbitrum": "arbitrum",
+                    "Robinhood": "robinhood", "Avalanche": "avalanche", "BNB Chain": "bsc"}
+
+
+def chart_link(name, pool):
+    netz = DEXSCREENER_NETZ.get(name)
+    return f"\n📈 Chart: https://dexscreener.com/{netz}/{pool.lower()}" if netz and pool else ""
+
+
 def telegram(text):
     token = os.environ["TELEGRAM_TOKEN"].strip()
     chat = os.environ["TELEGRAM_CHAT_ID"].strip()
@@ -458,7 +467,7 @@ def chain_pruefen(name, cfg, sickle, zst, tokens, nah_schwelle, meldungen, ueber
         kopf = f"{paar} {kopf_ohne}"
         alt = e.get("status")
         status = status_berechnen(pos, tick, alt, nah_schwelle)
-        bereich = bereichstext(pos, tick, t0, t1)
+        bereich = bereichstext(pos, tick, t0, t1) + chart_link(name, e["pool"])
         uebersicht.append((status, kopf, bereich, f"{paar} ({name})"))
 
         if alt is None:
