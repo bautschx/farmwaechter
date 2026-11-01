@@ -2,36 +2,44 @@
  "chains": {
   "Arbitrum": {
    "fehler": 0,
-   "letzter_block": 520197980,
+   "letzter_block": 520198972,
    "log_schritt": 5000,
    "nfts": {}
   },
   "Avalanche": {
    "fehler": 0,
-   "letzter_block": 99105669,
+   "letzter_block": 99106005,
    "log_schritt": 5000,
    "nfts": {}
   },
   "BNB Chain": {
    "fehler": 0,
-   "letzter_block": 130997967,
+   "letzter_block": 130998660,
    "nfts": {}
   },
   "Base": {
    "fehler": 0,
-   "letzter_block": 53361891,
+   "letzter_block": 53362045,
    "log_schritt": 78,
-   "nfts": {}
+   "nfts": {
+    "5453d8d388b00635": {
+     "c": "36dcd08941ed949b0bfc89d58db4f8e2c7bfeec759932f915f86eb817b703172",
+     "m": "0x4857db576ee0e45f10525ec59527bfd10beec60b",
+     "paar": "WETH/ZRO",
+     "pool": "0x0f21a72a02dc78217c2987826d061500aecf7707",
+     "status": "im"
+    }
+   }
   },
   "OP Mainnet": {
    "fehler": 0,
-   "letzter_block": 158957176,
+   "letzter_block": 158957330,
    "log_schritt": 5000,
    "nfts": {}
   },
   "Robinhood": {
    "fehler": 0,
-   "letzter_block": 103162748,
+   "letzter_block": 103165775,
    "log_schritt": 5000,
    "nfts": {}
   }
@@ -49,6 +57,14 @@
   "Avalanche:0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e": {
    "decimals": 6,
    "symbol": "USDC"
+  },
+  "Base:0x4200000000000000000000000000000000000006": {
+   "decimals": 18,
+   "symbol": "WETH"
+  },
+  "Base:0x6985884c4392d348587b19cb9eaaf157f13271cd": {
+   "decimals": 18,
+   "symbol": "ZRO"
   },
   "Base:0x833589fcd6edb6e08f4c7c32d4f71b54bda02913": {
    "decimals": 6,
