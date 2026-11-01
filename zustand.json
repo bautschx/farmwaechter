@@ -2,44 +2,36 @@
  "chains": {
   "Arbitrum": {
    "fehler": 0,
-   "letzter_block": 520208255,
+   "letzter_block": 520209059,
    "log_schritt": 5000,
    "nfts": {}
   },
   "Avalanche": {
    "fehler": 0,
-   "letzter_block": 99109262,
+   "letzter_block": 99109519,
    "log_schritt": 5000,
    "nfts": {}
   },
   "BNB Chain": {
    "fehler": 0,
-   "letzter_block": 131005384,
+   "letzter_block": 131005960,
    "nfts": {}
   },
   "Base": {
    "fehler": 0,
-   "letzter_block": 53363560,
+   "letzter_block": 53363690,
    "log_schritt": 78,
-   "nfts": {
-    "5e5b41b410e5396d": {
-     "c": "b4a11ad17ad411b7ce79118a60884e76093c1d68cc7b95f8e474a703fb6f0041",
-     "m": "0x03a520b32c04bf3beef7beb72e919cf822ed34f1",
-     "paar": "AXIS/USDC",
-     "pool": "0x8f3003c6a6b92cf2d419d3ad75cb625bba9364e2",
-     "status": "im"
-    }
-   }
+   "nfts": {}
   },
   "OP Mainnet": {
    "fehler": 0,
-   "letzter_block": 158958844,
+   "letzter_block": 158958974,
    "log_schritt": 5000,
    "nfts": {}
   },
   "Robinhood": {
    "fehler": 0,
-   "letzter_block": 103194883,
+   "letzter_block": 103197365,
    "log_schritt": 5000,
    "nfts": {}
   }
