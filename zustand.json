@@ -2,36 +2,44 @@
  "chains": {
   "Arbitrum": {
    "fehler": 0,
-   "letzter_block": 520206296,
+   "letzter_block": 520207191,
    "log_schritt": 5000,
    "nfts": {}
   },
   "Avalanche": {
    "fehler": 0,
-   "letzter_block": 99108576,
+   "letzter_block": 99108882,
    "log_schritt": 5000,
    "nfts": {}
   },
   "BNB Chain": {
    "fehler": 0,
-   "letzter_block": 131003989,
+   "letzter_block": 131004630,
    "nfts": {}
   },
   "Base": {
    "fehler": 0,
-   "letzter_block": 53363246,
+   "letzter_block": 53363390,
    "log_schritt": 78,
-   "nfts": {}
+   "nfts": {
+    "5e5b41b410e5396d": {
+     "c": "b4a11ad17ad411b7ce79118a60884e76093c1d68cc7b95f8e474a703fb6f0041",
+     "m": "0x03a520b32c04bf3beef7beb72e919cf822ed34f1",
+     "paar": "AXIS/USDC",
+     "pool": "0x8f3003c6a6b92cf2d419d3ad75cb625bba9364e2",
+     "status": "im"
+    }
+   }
   },
   "OP Mainnet": {
    "fehler": 0,
-   "letzter_block": 158958531,
+   "letzter_block": 158958675,
    "log_schritt": 5000,
    "nfts": {}
   },
   "Robinhood": {
    "fehler": 0,
-   "letzter_block": 103188849,
+   "letzter_block": 103191613,
    "log_schritt": 5000,
    "nfts": {}
   }
@@ -53,6 +61,10 @@
   "Base:0x4200000000000000000000000000000000000006": {
    "decimals": 18,
    "symbol": "WETH"
+  },
+  "Base:0x5be75e3b0aff5d1a042a5363ae36acb1d6d755ea": {
+   "decimals": 18,
+   "symbol": "AXIS"
   },
   "Base:0x6985884c4392d348587b19cb9eaaf157f13271cd": {
    "decimals": 18,
