@@ -2,24 +2,24 @@
  "chains": {
   "Arbitrum": {
    "fehler": 0,
-   "letzter_block": 521037242,
+   "letzter_block": 521038202,
    "log_schritt": 5000,
    "nfts": {}
   },
   "Avalanche": {
    "fehler": 0,
-   "letzter_block": 99359760,
+   "letzter_block": 99360052,
    "log_schritt": 5000,
    "nfts": {}
   },
   "BNB Chain": {
    "fehler": 0,
-   "letzter_block": 131537227,
+   "letzter_block": 131537830,
    "nfts": {}
   },
   "Base": {
    "fehler": 0,
-   "letzter_block": 53483255,
+   "letzter_block": 53483391,
    "log_schritt": 50,
    "nfts": {
     "ac3b25e595b1156b": {
@@ -27,19 +27,19 @@
      "m": "0x4857db576ee0e45f10525ec59527bfd10beec60b",
      "paar": "USDC/SKHYc",
      "pool": "0xebc746a47ebb274de1dbdc9a465e6c5c2301c5da",
-     "status": "im"
+     "status": "nah"
     }
    }
   },
   "OP Mainnet": {
    "fehler": 0,
-   "letzter_block": 159078539,
+   "letzter_block": 159078676,
    "log_schritt": 5000,
    "nfts": {}
   },
   "Robinhood": {
    "fehler": 0,
-   "letzter_block": 105517433,
+   "letzter_block": 105520086,
    "log_schritt": 5000,
    "nfts": {}
   }
