@@ -80,6 +80,7 @@
     },
     "Robinhood": {
       "blockzeit": 0.1,
+      "sickle_geheimnis": "SICKLE_ROBINHOOD",
       "rpc": [
         "https://rpc.mainnet.chain.robinhood.com"
       ],

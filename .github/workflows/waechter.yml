@@ -35,6 +35,7 @@ jobs:
           SICKLE_ADDRESS: ${{ secrets.SICKLE_ADDRESS }}
           SICKLE_AVALANCHE: ${{ secrets.SICKLE_AVALANCHE }}
           SICKLE_BASE: ${{ secrets.SICKLE_BASE }}
+          SICKLE_ROBINHOOD: ${{ secrets.SICKLE_ROBINHOOD }}
           DIAGNOSE: ${{ inputs.diagnose }}
         run: python waechter.py
 
