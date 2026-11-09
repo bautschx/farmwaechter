@@ -2,36 +2,36 @@
  "chains": {
   "Arbitrum": {
    "fehler": 0,
-   "letzter_block": 522562263,
+   "letzter_block": 522563405,
    "log_schritt": 5000,
    "nfts": {}
   },
   "Avalanche": {
    "fehler": 0,
-   "letzter_block": 99817616,
+   "letzter_block": 99817957,
    "log_schritt": 5000,
    "nfts": {}
   },
   "BNB Chain": {
    "fehler": 0,
-   "letzter_block": 132516207,
+   "letzter_block": 132516954,
    "nfts": {}
   },
   "Base": {
    "fehler": 0,
-   "letzter_block": 55030769,
+   "letzter_block": 55032449,
    "log_schritt": 50,
    "nfts": {}
   },
   "OP Mainnet": {
    "fehler": 0,
-   "letzter_block": 159298875,
+   "letzter_block": 159299043,
    "log_schritt": 5000,
    "nfts": {}
   },
   "Robinhood": {
    "fehler": 0,
-   "letzter_block": 109761021,
+   "letzter_block": 109764248,
    "log_schritt": 5000,
    "nfts": {
     "7985d4afe27c4439": {
@@ -39,7 +39,7 @@
      "m": "0x07f44c47743a2f36414a82b9f558ecfcf0eedcef",
      "paar": "PONS/USDG",
      "pool": "0x2f393b60ef0cfaf669af63284e5592dc3a657b73",
-     "status": "nah"
+     "status": "aus"
     }
    }
   }
