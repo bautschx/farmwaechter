@@ -2,37 +2,36 @@
  "chains": {
   "Arbitrum": {
    "fehler": 0,
-   "letzter_block": 523000736,
+   "letzter_block": 523001843,
    "log_schritt": 5000,
    "nfts": {}
   },
   "Avalanche": {
    "fehler": 0,
-   "letzter_block": 99943223,
+   "letzter_block": 99943527,
    "log_schritt": 5000,
    "nfts": {}
   },
   "BNB Chain": {
    "fehler": 0,
-   "letzter_block": 132790669,
+   "letzter_block": 132791337,
    "nfts": {}
   },
   "Base": {
    "fehler": 0,
-   "letzter_block": 55648835,
+   "letzter_block": 55650336,
    "log_schritt": 50,
    "nfts": {}
   },
   "OP Mainnet": {
    "fehler": 0,
-   "letzter_block": 159360682,
+   "letzter_block": 159360832,
    "log_schritt": 5000,
    "nfts": {}
   },
   "Robinhood": {
-   "fehler": 1,
-   "letzter_block": 110942837,
-   "letzter_fehler": "Robinhood: keine Antwort (https://rpc.mainnet.chain.robinhood.com: HTTP Error 429: Too Many Requests)",
+   "fehler": 0,
+   "letzter_block": 110945786,
    "log_schritt": 5000,
    "nfts": {
     "fcea48b745d71e72": {
