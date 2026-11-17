@@ -2,24 +2,24 @@
  "chains": {
   "Arbitrum": {
    "fehler": 0,
-   "letzter_block": 525139346,
+   "letzter_block": 525140494,
    "log_schritt": 5000,
    "nfts": {}
   },
   "Avalanche": {
    "fehler": 0,
-   "letzter_block": 100596763,
+   "letzter_block": 100597162,
    "log_schritt": 5000,
    "nfts": {}
   },
   "BNB Chain": {
    "fehler": 0,
-   "letzter_block": 134187142,
+   "letzter_block": 134187896,
    "nfts": {}
   },
   "Base": {
    "fehler": 0,
-   "letzter_block": 58792782,
+   "letzter_block": 58794487,
    "log_schritt": 50,
    "nfts": {
     "6bf1805b009be262": {
@@ -27,19 +27,19 @@
      "m": "0x4857db576ee0e45f10525ec59527bfd10beec60b",
      "paar": "USDC/INTCc",
      "pool": "0x3d384288fa79b51de882b06b617ab7989ccad4f3",
-     "status": "im"
+     "status": "aus"
     }
    }
   },
   "OP Mainnet": {
    "fehler": 0,
-   "letzter_block": 159675077,
+   "letzter_block": 159675247,
    "log_schritt": 5000,
    "nfts": {}
   },
   "Robinhood": {
    "fehler": 0,
-   "letzter_block": 116874293,
+   "letzter_block": 116877609,
    "log_schritt": 5000,
    "nfts": {}
   }
