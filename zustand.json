@@ -2,37 +2,36 @@
  "chains": {
   "Arbitrum": {
    "fehler": 0,
-   "letzter_block": 527525542,
+   "letzter_block": 527525727,
    "log_schritt": 5000,
    "nfts": {}
   },
   "Avalanche": {
    "fehler": 0,
-   "letzter_block": 101379453,
+   "letzter_block": 101379519,
    "log_schritt": 5000,
    "nfts": {}
   },
   "BNB Chain": {
    "fehler": 0,
-   "letzter_block": 135715656,
+   "letzter_block": 135715770,
    "nfts": {}
   },
   "Base": {
-   "fehler": 1,
-   "letzter_block": 62232470,
-   "letzter_fehler": "Base: keine Antwort (https://base.llamarpc.com: HTTP Error 525: <none>)",
+   "fehler": 0,
+   "letzter_block": 62233794,
    "log_schritt": 50,
    "nfts": {}
   },
   "OP Mainnet": {
    "fehler": 0,
-   "letzter_block": 160019138,
+   "letzter_block": 160019178,
    "log_schritt": 5000,
    "nfts": {}
   },
   "Robinhood": {
    "fehler": 0,
-   "letzter_block": 123260947,
+   "letzter_block": 123261202,
    "log_schritt": 5000,
    "nfts": {}
   }
